@@ -11,7 +11,11 @@ function replaceStringsWithRequires(string) {
     if (url.charAt(0) !== ".") {
       url = "./" + url;
     }
-    return "require('" + url + "')";
+    if (url.indexOf(".css") !== -1) {
+      return "require('" + url + "').toString()";
+    } else {
+      return "require('" + url + "')";
+    }
   });
 }
 
